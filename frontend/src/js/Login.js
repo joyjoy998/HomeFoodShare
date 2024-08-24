@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value.trim();
 
       // verify user input from frontend
-      if (!username || !password) {
+      if (!email || !password) {
           alert("You must fill in all fields.");
           return;
       }
