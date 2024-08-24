@@ -4,11 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const imagePreview = document.getElementById("imagePreview");
   let imagesArray = [];
 
-  // 处理图片选择
+
   photoInput.addEventListener("change", function (event) {
     const files = event.target.files;
-    imagesArray = []; // 清空之前的图片数组
-    imagePreview.innerHTML = ""; // 清空预览区域
+    imagesArray = []; 
+    imagePreview.innerHTML = ""; 
 
     Array.from(files).forEach((file) => {
       const reader = new FileReader();
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // 显示图片预览
+  
   function displayImage(base64Image) {
     const img = document.createElement("img");
     img.src = base64Image;
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     imagePreview.appendChild(img);
   }
 
-  // 处理表单提交
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -50,11 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     foodData.push(formData);
-
-    // 检查 localStorage 的大小限制
     try {
       localStorage.setItem("foodData", JSON.stringify(foodData));
-      // 显示成功消息
+
       alert("Data has been uploaded successfully!");
       window.location.href = "./home.html";
     } catch (e) {
