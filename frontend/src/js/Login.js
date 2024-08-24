@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (response.ok) {
               // login successful
               alert("Successfully log in.");
-              window.location.href = "/home";
+              window.location.href = "/index";
           } else {
               // handle login error
               alert(result.message || "Login failed. Please make sure your have entered correct user name and password.");
