@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (response.ok) {
               // signup successful
               alert("Signup successful. Please login.");
-              window.location.href = "/login";
+              window.location.href = "./login.html";
           } else {
               // handle signup error
               alert(result.message || "Failed to signup. Please try again.");
