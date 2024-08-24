@@ -67,7 +67,7 @@
 
         <label for="tags">Cuisine Type:</label>
         <select id="tags" required>
-            <option value="">Select a cuisine type</option>
+            <option value="">Select a Cuisine Type</option>
             <option value="Chinese">Chinese</option>
             <option value="Italian">Italian</option>
             <option value="Japanese">Japanese</option>
@@ -86,10 +86,51 @@
             <option value="Others">Others</option>
         </select><br><br>
 
-        <label for="code">Address Code (Australian Postcode):</label>
-        <input type="text" id="code" placeholder="Enter Australian postcode" required><br>
-        <span id="postcodeError" class="error-message" style="display: none;">Invalid postcode. Please enter a 4-digit Australian postcode.</span><br>
-
+        <label for="university">University:</label>
+        <select id="university" required>
+            <option value="">Select a University</option>
+            <option value="ACU">Australian Catholic University (ACU)</option>
+            <option value="ANU">Australian National University (ANU)</option>
+            <option value="Bond">Bond University</option>
+            <option value="CQU">Central Queensland University (CQU)</option>
+            <option value="CDU">Charles Darwin University (CDU)</option>
+            <option value="CSU">Charles Sturt University (CSU)</option>
+            <option value="Curtin">Curtin University</option>
+            <option value="Deakin">Deakin University</option>
+            <option value="ECU">Edith Cowan University (ECU)</option>
+            <option value="FedUni">Federation University Australia (FedUni)</option>
+            <option value="Flinders">Flinders University</option>
+            <option value="Griffith">Griffith University</option>
+            <option value="JCU">James Cook University (JCU)</option>
+            <option value="LaTrobe">La Trobe University</option>
+            <option value="Macquarie">Macquarie University</option>
+            <option value="Monash">Monash University</option>
+            <option value="Murdoch">Murdoch University</option>
+            <option value="QUT">Queensland University of Technology (QUT)</option>
+            <option value="RMIT">Royal Melbourne Institute of Technology University University (RMIT)</option>
+            <option value="SCU">Southern Cross University (SCU)</option>
+            <option value="Swinburne">Swinburne University of Technology (Swinburne)</option>
+            <option value="Adelaide">The University of Adelaide</option>
+            <option value="UniMelb">The University of Melbourne (UniMelb)</option>
+            <option value="UNE">The University of New England (UNE)</option>
+            <option value="UNSW">The University of New South Wales (UNSW)</option>
+            <option value="UON">The University of Newcastle (UON)</option>
+            <option value="UNDA">The University of Notre Dame Australia (UNDA)</option>
+            <option value="UQ">The University of Queensland (UQ)</option>
+            <option value="USYD">The University of Sydney (USYD)</option>
+            <option value="UWA">The University of Western Australia (UWA)</option>
+            <option value="Torrens">Torrens University Australia</option>
+            <option value="UC">University of Canberra (UC)</option>
+            <option value="Divinity">University of Divinity</option>
+            <option value="UniSA">University of South Australia (UniSA)</option>
+            <option value="USQ">University of Southern Queensland (USQ)</option>
+            <option value="USC">University of the Sunshine Coast (USC)</option>
+            <option value="UTAS">University of Tasmania (UTAS)</option>
+            <option value="UTS">University of Technology Sydney (UTS)</option>
+            <option value="UOW">University of Wollongong (UOW)</option>
+            <option value="VU">Victoria University (VU)</option>
+            <option value="WSU">Western Sydney University (WSU)</option>
+        </select><br><br>
 
         <label for="description">Description:</label>
         <textarea id="description" placeholder="Describe the food..." required></textarea><br><br>
@@ -145,62 +186,37 @@
             displayImages();
         }
 
-            // 验证澳大利亚邮编 (邮编通常为4位数字)
-            function validatePostcode(postcode) {
-            const regex = /^[0-9]{4}$/;
-            return regex.test(postcode);
-        }
-
-        document.getElementById('code').addEventListener('input', function() {
-            const postcode = this.value;
-            const errorElement = document.getElementById('postcodeError');
-
-            if (!validatePostcode(postcode)) {
-                errorElement.style.display = 'block';
-            } else {
-                errorElement.style.display = 'none';
-            }
-        });
-
         document.getElementById('uploadForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            const postcode = document.getElementById('code').value;
+            const university = document.getElementById('university').value;
             const description = document.getElementById('description').value;
-            const errorElement = document.getElementById('postcodeError');
 
             // 检查图片是否为空
             if (imagesArray.length === 0) {
-                            alert('Please upload at least one image.');
-                            return;
-                        }
-                        
+                alert('Please upload at least one image.');
+                return;
+            }
+
             // 检查 description 是否为空
             if (description.trim() === '') {
                 alert('Description cannot be empty.');
                 return;
             }
-            // 检查邮编是否有效
-            if (!validatePostcode(postcode)) {
-                errorElement.style.display = 'block';
-                return;
-            }
+
             // 构造 JSON 数据
             const jsonData = {
                 tags: document.getElementById('tags').value,
                 description: description,
-                code: postcode
+                university: university
             };
+
             const formData = new FormData();
             formData.append('data', JSON.stringify(jsonData));  // 添加JSON数据
 
             imagesArray.forEach(image => {
-                formData.append('photos', image.file);// 添加图片数据
+                formData.append('photos', image.file); // 添加图片数据
             });
-            
-            formData.append('tags', document.getElementById('tags').value);
-            formData.append('description', document.getElementById('description').value);
-            formData.append('code', postcode);
 
             fetch('/api/upload', {
                 method: 'POST',
