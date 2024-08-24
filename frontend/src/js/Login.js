@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
 
     // get user input
-    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
     // verify user input from frontend
-    if (!username || !password) {
+    if (!email || !password) {
       alert("You must fill in all fields.");
       return;
     }
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: username,
+            email: email,
             password: password,
           }),
         }
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (response.ok) {
         // login successful
         alert("Successfully log in.");
-        window.location.href = "/profile";
+        // window.location.href = "/profile";
       } else {
         // handle login error
         alert(

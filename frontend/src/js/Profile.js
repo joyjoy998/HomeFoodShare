@@ -6,21 +6,29 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (response.ok) {
           const userData = await response.json();
 
-          // update user profile data on the page
+          // display user profile information
           document.getElementById("username").textContent = userData.username;
           document.getElementById("email").textContent = userData.email;
           document.getElementById("phone").textContent = userData.phone;
 
-          // update food history list
           const foodHistoryList = document.getElementById("foodHistory");
-          userData.foodHistory.forEach(food => {
-              const listItem = document.createElement("li");
-              const link = document.createElement("a");
-              link.href = `/food-detail/${food.id}`;
-              link.textContent = food.name;
-              listItem.appendChild(link);
-              foodHistoryList.appendChild(listItem);
-          });
+          const foodHistoryTitle = document.getElementById("foodHistoryTitle");
+
+          // if user have food upload history, display it
+          if (userData.foodHistory && userData.foodHistory.length > 0) {
+              userData.foodHistory.forEach(food => {
+                  const listItem = document.createElement("li");
+                  const link = document.createElement("a");
+                  link.href = `/food-detail/${food.id}`;
+                  link.textContent = food.name;
+                  listItem.appendChild(link);
+                  foodHistoryList.appendChild(listItem);
+              });
+          } else { 
+          // if user have no food upload history, hide the food history section
+              foodHistoryTitle.style.display = "none";
+              foodHistoryList.style.display = "none";
+          }
       } else {
           alert("Failed to load user profile. Please login.");
       }
