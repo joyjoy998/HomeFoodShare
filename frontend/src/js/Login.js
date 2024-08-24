@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Handle the home icon click
   homeIcon.addEventListener("click", () => {
-    window.location.href = "./home.html";
+    window.location.href = "./index.html";
   });
 
 });
