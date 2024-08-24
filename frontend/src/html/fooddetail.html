@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Detail</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .food-detail-container {
+        max-width: 600px;
+        margin: auto;
+      }
+      .food-detail-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .food-detail-header h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+      .food-images {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .food-images img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+      .food-info {
+        margin-bottom: 10px;
+      }
+      .food-info label {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+      .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #007bff;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="food-detail-container">
+      <div class="food-detail-header">
+        <h1>Food Item Details</h1>
+      </div>
+      <div id="foodImages" class="food-images"></div>
+      <div class="food-info">
+        <label>Cuisine Type:</label>
+        <span id="foodTags"></span>
+      </div>
+      <div class="food-info">
+        <label>Description:</label>
+        <span id="foodDescription"></span>
+      </div>
+      <div class="food-info">
+        <label>University:</label>
+        <span id="foodCode"></span>
+      </div>
+
+      <!-- 评论区 -->
+      <div class="comments-section">
+        <h2>Comments</h2>
+        <div class="comment-form">
+          <textarea id="commentText" placeholder="Add a comment..."></textarea>
+          <select id="commentPrivacy">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+          <button id="addCommentBtn">Add Comment</button>
+        </div>
+        <div id="commentsList"></div>
+      </div>
+
+      <a href="home.html" class="back-link">← Back to Main Page</a>
+    </div>
+
+    <script>
+      // 假设从URL获取食物ID
+      const foodId = new URLSearchParams(window.location.search).get("id");
+
+      // 假设我们有一个API端点可以根据ID获取食物详细信息
+      fetch(`/api/food/${foodId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            displayFoodDetails(data.foodItem);
+          } else {
+            alert("Failed to fetch food details: " + data.message);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching food item:", error);
+        });
+
+      function displayFoodDetails(foodItem) {
+        // 显示图片
+        const foodImagesContainer = document.getElementById("foodImages");
+        foodItem.photos.forEach((photoUrl) => {
+          const imgElement = document.createElement("img");
+          imgElement.src = photoUrl; // 图片URL
+          foodImagesContainer.appendChild(imgElement);
+        });
+
+        // 显示其他信息
+        document.getElementById("foodTags").textContent = foodItem.tags;
+        document.getElementById("foodDescription").textContent =
+          foodItem.description;
+        document.getElementById("foodCode").textContent = foodItem.code;
+
+        // 显示评论
+        loadComments(foodItem.comments);
+      }
+      function loadComments(comments) {
+        const commentsList = document.getElementById("commentsList");
+        commentsList.innerHTML = "";
+
+        comments.forEach((comment) => {
+          const commentElement = document.createElement("div");
+          commentElement.classList.add("comment");
+
+          const textElement = document.createElement("p");
+          textElement.textContent = comment.text;
+
+          const privacyElement = document.createElement("p");
+          privacyElement.textContent = `Privacy: ${comment.privacy}`;
+
+          const actionsElement = document.createElement("div");
+          actionsElement.classList.add("comment-actions");
+
+          // 只有评论的拥有者才能删除评论
+          if (comment.isOwner) {
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.addEventListener("click", () => {
+              deleteComment(comment.id);
+            });
+            actionsElement.appendChild(deleteButton);
+          }
+
+          commentElement.appendChild(textElement);
+          commentElement.appendChild(privacyElement);
+          commentElement.appendChild(actionsElement);
+          commentsList.appendChild(commentElement);
+        });
+      }
+
+      function deleteComment(commentId) {
+        // 假设我们有一个API端点可以根据ID删除评论
+        fetch(`/api/comment/${commentId}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Comment deleted successfully");
+              location.reload(); // 重新加载页面以刷新评论列表
+            } else {
+              alert("Failed to delete comment: " + data.message);
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting comment:", error);
+          });
+      }
+
+      document.getElementById("addCommentBtn").addEventListener("click", () => {
+        const commentText = document.getElementById("commentText").value;
+        const commentPrivacy = document.getElementById("commentPrivacy").value;
+
+        if (commentText.trim() === "") {
+          alert("Comment text cannot be empty");
+          return;
+        }
+
+        const newComment = {
+          text: commentText,
+          privacy: commentPrivacy,
+          foodId: foodId,
+        };
+
+        // 假设我们有一个API端点可以添加新评论
+        fetch(`/api/comment`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newComment),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Comment added successfully");
+              location.reload(); // 重新加载页面以刷新评论列表
+            } else {
+              alert("Failed to add comment: " + data.message);
+            }
+          })
+          .catch((error) => {
+            console.error("Error adding comment:", error);
+          });
+      });
+    </script>
+  </body>
+</html>

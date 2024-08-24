@@ -1,7 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.getElementById("loginForm");
+  const resetButton = document.getElementById("resetButton");
+  const submitButton = document.getElementById("submitButton");
 
-  loginForm.addEventListener("submit", async (event) => {
+  // Handle the reset button
+  resetButton.addEventListener("click", () => {
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+  });
+
+  // Handle the submit button
+  submitButton.addEventListener("click", async (event) => {
     event.preventDefault();
 
     // get user input
@@ -33,16 +41,25 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.json();
 
       if (response.ok) {
-        // login successful
-        alert("Successfully log in.");
-        window.location.href = "./home.html";
+        if (result.message === "Authentication successful") {
+          // login successful
+          alert("Successfully logged in.");
+          window.location.href = "./home.html";
+        } else {
+          // handle unexpected success response
+          alert(result.message || "Unexpected response from server.");
+        }
       } else {
-        // handle login error
-        alert(
-          result.message ||
-            "Login failed. Please make sure your have entered correct user name and password."
-        );
+        // handle login error based on the returned status code
+        if (response.status === 401) {
+          alert(result.message || "Incorrect password. Please try again.");
+        } else if (response.status === 404) {
+          alert(result.message || "User not found. Please check your email.");
+        } else {
+          alert(result.message || "Login failed. Please make sure you have entered the correct email and password.");
+        }
       }
+      
     } catch (error) {
       console.error("Error during login:", error);
       alert("Network error. Please try again.");
