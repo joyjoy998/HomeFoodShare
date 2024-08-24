@@ -17,8 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
       }
 
-      if (password !== confirmPassword) {
-          alert("Passwords do not match");
+      // regex to check if email is a valid university email for food/address safety reasons
+      // as we only want the food share to be within university communities
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(edu\.au)$/;
+      if (!emailPattern.test(email)) {
+          alert("You must have a valid university email to sign up.");
           return;
       }
 
