@@ -11,7 +11,7 @@
 
         .header img {
             width: 100%;
-            height: 100%;
+            height: auto;
         }
 
         .header .buttons {
@@ -55,6 +55,51 @@
             margin-left: 10px;
         }
 
+        .food-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            align-items: center;
+        }
+
+        .food-item {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            max-width: 900px;
+            background-color: #d8e38c;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .food-item:hover {
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .food-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .food-item h3 {
+            margin: 0;
+            font-size: 24px;
+            color: #6b8245;
+        }
+
+        .food-item p {
+            margin: 5px 0 0 0;
+            color: #555;
+            font-size: 16px;
+        }
+
         .marketplace {
             width: 100%;
             display: flex;
@@ -68,6 +113,7 @@
             border-radius: 10px;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
+
        
     </style>
   </head>
@@ -86,7 +132,6 @@
     </div>
 
     <div id="foodList" class="food-list">
-      <!-- 动态生成的食物项 -->
     </div>
 
     <div class="marketplace">
@@ -134,42 +179,45 @@
 
       localStorage.setItem("foodData", JSON.stringify(foodData));
 
-      // 显示所有食物
-      function displayFoodItems(foodItems) {
-        const foodList = document.getElementById("foodList");
-        foodList.innerHTML = "";
+      document.addEventListener("DOMContentLoaded", () => {
+  const foodData = JSON.parse(localStorage.getItem("foodData") || "[]");
 
-        foodItems.forEach((food) => {
-          const foodItemElement = document.createElement("div");
-          foodItemElement.classList.add("food-item");
-          foodItemElement.innerHTML = `
-                    <img src="${food.imageUrl}" alt="${food.title}">
+  // Display food items function
+  function displayFoodItems(foodItems) {
+    const foodList = document.getElementById("foodList");
+    foodList.innerHTML = "";
+
+    foodItems.forEach((food) => {
+      const foodItemElement = document.createElement("div");
+      foodItemElement.classList.add("food-item");
+      foodItemElement.innerHTML = `
+                <img src="${food.imageUrl}" alt="${food.title}">
+                <div>
                     <h3>${food.title}</h3>
                     <p>${food.description}</p>
-                `;
-          foodItemElement.addEventListener("click", () => {
-            location.href = `food-detail.html?id=${food.id}`;
-          });
+                </div>
+            `;
+      foodItemElement.addEventListener("click", () => {
+        location.href = `food-detail.html?id=${food.id}`;
+      });
 
-          foodList.appendChild(foodItemElement);
-        });
-      }
+      foodList.appendChild(foodItemElement);
+    });
+  }
 
-      // 搜索功能
-      function searchFood() {
-        const query = document
-          .getElementById("searchInput")
-          .value.toLowerCase();
-        const filteredFood = foodData.filter(
-          (food) =>
-            food.title.toLowerCase().includes(query) ||
-            food.description.toLowerCase().includes(query)
-        );
-        displayFoodItems(filteredFood);
-      }
+  // Search functionality
+  document.querySelector(".search-bar img").addEventListener("click", searchFood);
 
-      // 初始化页面显示所有食物
-      displayFoodItems(foodData);
+  function searchFood() {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const filteredFood = foodData.filter(
+      (food) =>
+        food.title.toLowerCase().includes(query) ||
+        food.description.toLowerCase().includes(query)
+    );
+    displayFoodItems(filteredFood);
+  }
+});
     </script>
   </body>
 </html>
