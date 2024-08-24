@@ -87,7 +87,7 @@
     </div>
     <div class="button-container">
       <div class="buttons">
-        <button onclick="location.href='foodloading-0.html'">Upload</button>
+        <button onclick="location.href='foodUploading.html'">Upload</button>
       </div>
       <div class="buttons">
         <button onclick="location.href='profile.html'">Profile</button>
@@ -106,22 +106,6 @@
       const foodData = localStorage.getItem("foodData")
         ? JSON.parse(localStorage.getItem("foodData"))
         : [];
-
-      const savedData = localStorage.getItem("foodUploadData");
-      if (savedData) {
-        const foodUploadData = JSON.parse(savedData);
-        console.log(foodUploadData);
-        const newFoodItem = {
-          id: foodData.length + 1,
-          title: foodUploadData.title,
-          description: foodUploadData.description,
-          tag: foodUploadData.tag,
-          university: foodUploadData.university,
-          imageUrl: foodUploadData.imageUrl,
-        };
-        foodData.push(newFoodItem);
-        localStorage.setItem("foodData", JSON.stringify(foodData));
-      }
 
       // Display food items
       function displayFoodItems(foodItems) {

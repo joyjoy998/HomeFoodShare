@@ -35,7 +35,12 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
+    const foodData = localStorage.getItem("foodData")
+      ? JSON.parse(localStorage.getItem("foodData"))
+      : [];
+
     const formData = {
+      id: foodData.length + 1,
       title: document.getElementById("title").value,
       tag: document.getElementById("tag").value,
       university: document.getElementById("university").value,
@@ -43,8 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
       images: imagesArray,
     };
 
-    // 存储到 localStorage
-    localStorage.setItem("foodUploadData", JSON.stringify(formData));
+    foodData.push(formData);
+    localStorage.setItem("foodData", JSON.stringify(foodData));
 
     // 显示成功消息
     alert("Data has been uploaded successfully!");
