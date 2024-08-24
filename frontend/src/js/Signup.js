@@ -25,6 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
       }
 
+      // regex to validate password format
+      const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      if (!passwordPattern.test(password)) {
+          alert("Your password must contain at least one lowercase letter, one uppercase letter, one number, one special character, and be at least 8 characters long.");
+          return;
+      }
+
+      // check if password and confirm password match
+      if (password !== confirmPassword) {
+          alert("Passwords do not match.");
+          return;
+      }
+      
       // send data to backend
       try {
           const response = await fetch('/api/signup', {
