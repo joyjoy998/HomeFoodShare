@@ -5,37 +5,34 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
 
     // get user input
-    const email = document.getElementById("email").value.trim();
+    const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
 
     // verify user input from frontend
-    if (!email || !password) {
+    if (!username || !password) {
       alert("You must fill in all fields.");
       return;
     }
 
     // send data to backend
     try {
-      const response = await fetch(
-        "https://ffpq4timf7.execute-api.ap-southeast-2.amazonaws.com/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-        }
-      );
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
 
       const result = await response.json();
 
       if (response.ok) {
         // login successful
         alert("Successfully log in.");
-        // window.location.href = "/profile";
+        window.location.href = "/profile";
       } else {
         // handle login error
         alert(
