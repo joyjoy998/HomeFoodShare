@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (email === storedEmail && password === storedPassword) {
       // Login successful
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("userEmail", email);
 
       // Redirect to home page
       alert("Successfully logged in.");
