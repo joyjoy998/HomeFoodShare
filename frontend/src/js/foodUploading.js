@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
       tag: document.getElementById("tag").value,
       university: document.getElementById("university").value,
       description: document.getElementById("description").value,
-      images: imagesArray,
+      imageUrl: imagesArray,
     };
 
     foodData.push(formData);

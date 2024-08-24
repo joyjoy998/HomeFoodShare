@@ -84,7 +84,7 @@
         <div id="commentsList"></div>
       </div>
 
-      <a href="home.html" class="back-link">← Back to Main Page</a>
+      <a href="./home.html" class="back-link">← Back to Main Page</a>
     </div>
 
     <script>
@@ -105,9 +105,17 @@
       }
 
       function displayFoodDetails(foodItem) {
-        document.getElementById(
-          "foodImages"
-        ).innerHTML = `<img src="${foodItem.imageUrl}" alt="${foodItem.title}">`;
+        const imgElement = document.createElement("img");
+        if (foodItem.imageUrl && foodItem.imageUrl.length > 0) {
+          // 使用数组中的第一张图片
+          imgElement.src = foodItem.imageUrl[0];
+        } else {
+          // 如果没有图片，可以设置一个默认图片
+          imgElement.src = "path/to/default-image.jpg";
+        }
+        imgElement.alt = foodItem.title;
+
+        document.getElementById("foodImages").appendChild(imgElement);
         document.getElementById("foodTag").textContent = foodItem.tag;
         document.getElementById("foodDescription").textContent =
           foodItem.description;

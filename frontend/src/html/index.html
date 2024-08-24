@@ -5,140 +5,143 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Sharing Platform</title>
     <style>
-        html {
-            background-color: #557D55; 
-        }
+      html {
+        background-color: #557d55;
+      }
 
-        .header img {
-            width: 100%;
-            height: auto;
-        }
+      .header img {
+        width: 100%;
+        height: auto;
+      }
 
-        .header .buttons {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-        }
+      .header .buttons {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+      }
 
-        .header .buttons img {
-            width: 120px;
-            height: auto;
-            cursor: pointer;
-        }
+      .header .buttons img {
+        width: 120px;
+        height: auto;
+        cursor: pointer;
+      }
 
-        .search-bar {
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-        }
+      .search-bar {
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
 
-        .search-bar input {
-            padding: 15px;
-            width: 60%;
-            max-width: 600px;
-            font-size: 18px;
-            border-radius: 10px;
-            border: none;
-            background-color: #d8e38c;
-            outline: none;
-            padding-left: 40px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        }
+      .search-bar input {
+        padding: 15px;
+        width: 60%;
+        max-width: 600px;
+        font-size: 18px;
+        border-radius: 10px;
+        border: none;
+        background-color: #d8e38c;
+        outline: none;
+        padding-left: 40px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
 
-        .search-bar img {
-            width: 120px;
-            height: auto;
-            margin-left: 10px;
-        }
+      .search-bar img {
+        width: 120px;
+        height: auto;
+        margin-left: 10px;
+      }
 
-        .food-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 20px;
-            align-items: center;
-        }
+      .food-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        align-items: center;
+      }
 
-        .food-item {
-            display: flex;
-            align-items: center;
-            width: 80%;
-            max-width: 900px;
-            background-color: #d8e38c;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: box-shadow 0.3s ease;
-        }
+      .food-item {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        max-width: 900px;
+        background-color: #d8e38c;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: box-shadow 0.3s ease;
+      }
 
-        .food-item:hover {
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-        }
+      .food-item:hover {
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+      }
 
-        .food-item img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-right: 20px;
-        }
+      .food-item img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-right: 20px;
+      }
 
-        .food-item h3 {
-            margin: 0;
-            font-size: 24px;
-            color: #6b8245;
-        }
+      .food-item h3 {
+        margin: 0;
+        font-size: 24px;
+        color: #6b8245;
+      }
 
-        .food-item p {
-            margin: 5px 0 0 0;
-            color: #555;
-            font-size: 16px;
-        }
+      .food-item p {
+        margin: 5px 0 0 0;
+        color: #555;
+        font-size: 16px;
+      }
 
-        .marketplace {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
+      .marketplace {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
 
-        .marketplace img {
-            width: 80%;
-            max-width: 1200px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        }
-
-       
+      .marketplace img {
+        width: 80%;
+        max-width: 1200px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
     </style>
   </head>
   <body>
     <div class="header">
-        <div class="buttons">
-            <img src="../img/homepage/login.png" alt="Login Button" onclick="location.href='login.html'">
-            <img src="../img/homepage/sign up.png" alt="Sign Up Button" onclick="location.href='signup.html'">
-        </div>
-        <img src="../img/homepage/header.png"/>
+      <div class="buttons">
+        <img
+          src="../img/homepage/login.png"
+          alt="Login Button"
+          onclick="location.href='login.html'"
+        />
+        <img
+          src="../img/homepage/sign up.png"
+          alt="Sign Up Button"
+          onclick="location.href='signup.html'"
+        />
+      </div>
+      <img src="../img/homepage/header.png" />
     </div>
 
     <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search for food...">
-        <img src="../img/homepage/search.png" alt="Search Icon">
+      <input type="text" id="searchInput" placeholder="Search for food..." />
+      <img src="../img/homepage/search.png" alt="Search Icon" />
     </div>
 
-    <div id="foodList" class="food-list">
-    </div>
+    <div id="foodList" class="food-list"></div>
 
     <div class="marketplace">
-        <img src="../img/homepage/main.png" alt="Marketplace Image">
+      <img src="../img/homepage/main.png" alt="Marketplace Image" />
     </div>
-
-    
 
     <script>
       // Assume we have data accessed from backend
@@ -149,7 +152,7 @@
           description: "Fresh sushi with salmon",
           tag: "Japan",
           university: "University of Sydney",
-          imageUrl: "/uploads/sushi.jpg",
+          imageUrl: ["../img/food/sushi.jpg"],
         },
         {
           id: 2,
@@ -157,7 +160,7 @@
           description: "Italian pizza with cheese",
           tag: "Italy",
           university: "University of Melbourne",
-          imageUrl: "/uploads/pizza.jpg",
+          imageUrl: ["../img/food/pizza.jpg"],
         },
         {
           id: 3,
@@ -165,7 +168,7 @@
           description: "American burger with beef",
           tag: "USA",
           university: "University of New South Wales",
-          imageUrl: "/uploads/burger.jpg",
+          imageUrl: ["../img/food/burger.jpg"],
         },
         {
           id: 4,
@@ -173,51 +176,55 @@
           description: "Italian pasta with tomato sauce",
           tag: "Italy",
           university: "University of Queensland",
-          imageUrl: "/uploads/pasta.jpg",
+          imageUrl: ["../img/food/pasta.jpg"],
         },
       ];
 
       localStorage.setItem("foodData", JSON.stringify(foodData));
 
       document.addEventListener("DOMContentLoaded", () => {
-  const foodData = JSON.parse(localStorage.getItem("foodData") || "[]");
+        const foodData = JSON.parse(localStorage.getItem("foodData") || "[]");
 
-  // Display food items function
-  function displayFoodItems(foodItems) {
-    const foodList = document.getElementById("foodList");
-    foodList.innerHTML = "";
+        // Display food items function
+        function displayFoodItems(foodItems) {
+          const foodList = document.getElementById("foodList");
+          foodList.innerHTML = "";
 
-    foodItems.forEach((food) => {
-      const foodItemElement = document.createElement("div");
-      foodItemElement.classList.add("food-item");
-      foodItemElement.innerHTML = `
+          foodItems.forEach((food) => {
+            const foodItemElement = document.createElement("div");
+            foodItemElement.classList.add("food-item");
+            foodItemElement.innerHTML = `
                 <img src="${food.imageUrl}" alt="${food.title}">
                 <div>
                     <h3>${food.title}</h3>
                     <p>${food.description}</p>
                 </div>
             `;
-      foodItemElement.addEventListener("click", () => {
-        location.href = `food-detail.html?id=${food.id}`;
+            foodItemElement.addEventListener("click", () => {
+              location.href = `food-detail.html?id=${food.id}`;
+            });
+
+            foodList.appendChild(foodItemElement);
+          });
+        }
+
+        // Search functionality
+        document
+          .querySelector(".search-bar img")
+          .addEventListener("click", searchFood);
+
+        function searchFood() {
+          const query = document
+            .getElementById("searchInput")
+            .value.toLowerCase();
+          const filteredFood = foodData.filter(
+            (food) =>
+              food.title.toLowerCase().includes(query) ||
+              food.description.toLowerCase().includes(query)
+          );
+          displayFoodItems(filteredFood);
+        }
       });
-
-      foodList.appendChild(foodItemElement);
-    });
-  }
-
-  // Search functionality
-  document.querySelector(".search-bar img").addEventListener("click", searchFood);
-
-  function searchFood() {
-    const query = document.getElementById("searchInput").value.toLowerCase();
-    const filteredFood = foodData.filter(
-      (food) =>
-        food.title.toLowerCase().includes(query) ||
-        food.description.toLowerCase().includes(query)
-    );
-    displayFoodItems(filteredFood);
-  }
-});
     </script>
   </body>
 </html>

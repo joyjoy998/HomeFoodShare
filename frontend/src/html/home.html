@@ -146,9 +146,9 @@
 
           // 创建图片元素
           const imgElement = document.createElement("img");
-          if (food.images && food.images.length > 0) {
+          if (food.imageUrl && food.imageUrl.length > 0) {
             // 使用数组中的第一张图片
-            imgElement.src = food.images[0];
+            imgElement.src = food.imageUrl[0];
           } else {
             // 如果没有图片，可以设置一个默认图片
             imgElement.src = "path/to/default-image.jpg";

@@ -1,125 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup - HomeFoodShare</title>
     <style>
-        body {
-            font-family: 'Press Start 2P', cursive;
-            background-color: #557D55;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
-        }
+      body {
+        font-family: "Press Start 2P", cursive;
+        background-color: #557d55;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        flex-direction: column;
+      }
 
-        .header {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+      .header {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+      }
 
-        .header img {
-            width: 80%;
-        }
+      .header img {
+        width: 80%;
+      }
 
-        .container {
-            background-color: transparent;
-            width: 400px;
-            padding: 0;
-        }
+      .container {
+        background-color: transparent;
+        width: 400px;
+        padding: 0;
+      }
 
-        .input-group {
-            display: flex;
-            align-items: center;
-            margin: 10px 0;
-        }
+      .input-group {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+      }
 
-        .input-group img {
-            margin-right: 10px;
-            width: 30px;
-            height: 30px;
-        }
+      .input-group img {
+        margin-right: 10px;
+        width: 30px;
+        height: 30px;
+      }
 
-        .input-group input[type="text"],
-        .input-group input[type="email"],
-        .input-group input[type="password"],
-        .input-group input[type="tel"] {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #d8e38c;
-            color: #6b8245;
-            font-family: 'Press Start 2P', cursive;
-        }
+      .input-group input[type="text"],
+      .input-group input[type="email"],
+      .input-group input[type="password"],
+      .input-group input[type="tel"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: #d8e38c;
+        color: #6b8245;
+        font-family: "Press Start 2P", cursive;
+      }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #FFFFFF;
-        }
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #ffffff;
+      }
 
-        .buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
 
-        .buttons img {
-            cursor: pointer;
-            margin: 10px;
-            width: 120px;
-            height: 40px;
-        }
+      .buttons img {
+        cursor: pointer;
+        margin: 10px;
+        width: 120px;
+        height: 40px;
+      }
 
-        .home-button {
-            position: fixed;
-            bottom: 50px;
-            right: 50px;
-            cursor: pointer;
-        }
+      .home-button {
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        cursor: pointer;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="header">
-        <img src="../img/signup/header.png" alt="Home Food Sharing">
+      <img src="../img/signup/header.png" alt="Home Food Sharing" />
     </div>
     <div class="container">
-        <form id="signupForm">
-            <div class="input-group">
-                <img src="../img/signup/username .png" alt="Username Icon">
-                <input type="text" id="username" placeholder="Name" required>
-            </div>
-            <div class="input-group">
-                <img src="../img/signup/email.png" alt="Email Icon">
-                <input type="email" id="email" placeholder="Email" required>
-            </div>
-            <div class="input-group">
-                <img src="../img/signup/phone.png" alt="Phone Icon">
-                <input type="tel" id="phone" placeholder="Phone" required>
-            </div>
-            <div class="input-group">
-                <img src="../img/signup/password.png" alt="Password Icon">
-                <input type="password" id="password" placeholder="Password" required>
-            </div>
-            <div class="input-group">
-                <img src="../img/signup/confirm.png" alt="Confirm Password Icon">
-                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
-            </div>
-            <div class="buttons">
-                <img src="../img/signup/reset.png" alt="Reset" onclick="document.getElementById('signupForm').reset();">
-                <img src="../img/signup/submit.png" alt="Submit" onclick="document.getElementById('signupForm').submit();">
-            </div>
-        </form>
+      <form id="signupForm">
+        <div class="input-group">
+          <img src="../img/signup/username.png" alt="Username Icon" />
+          <input type="text" id="username" placeholder="Name" required />
+        </div>
+        <div class="input-group">
+          <img src="../img/signup/email.png" alt="Email Icon" />
+          <input type="email" id="email" placeholder="Email" required />
+        </div>
+        <div class="input-group">
+          <img src="../img/signup/phone.png" alt="Phone Icon" />
+          <input type="tel" id="phone" placeholder="Phone" required />
+        </div>
+        <div class="input-group">
+          <img src="../img/signup/password.png" alt="Password Icon" />
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <img src="../img/signup/confirm.png" alt="Confirm Password Icon" />
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            required
+          />
+        </div>
+        <div class="buttons">
+          <img
+            src="../img/signup/reset.png"
+            alt="Reset"
+            onclick="document.getElementById('signupForm').reset();"
+          />
+          <img
+            src="../img/signup/submit.png"
+            alt="Submit"
+            onclick="document.getElementById('signupForm').submit();"
+          />
+        </div>
+      </form>
     </div>
     <div class="home-button">
-        <img src="../img/signup/home.png" alt="Home" onclick="window.location.href='./index.html';">
+      <img
+        src="../img/signup/home.png"
+        alt="Home"
+        onclick="window.location.href='./index.html';"
+      />
     </div>
 
     <script src="../js/signup.js"></script>
-</body>
+  </body>
 </html>
