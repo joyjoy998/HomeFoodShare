@@ -110,7 +110,8 @@
       <img
         src="../img/homepage/search.png"
         alt="Search Icon"
-        id="searchButton" />
+        id="searchButton"
+      />
     </div>
 
     <div id="foodList" class="food-list"></div>
@@ -119,11 +120,13 @@
       <img
         src="../img/homepage/upload.png"
         alt="Upload Button"
-        onclick="location.href='foodUploading.html'" />
+        onclick="location.href='foodUploading.html'"
+      />
       <img
         src="../img/homepage/profile.png"
         alt="Profile Button"
-        onclick="location.href='profile.html'" />
+        onclick="location.href='profile.html'"
+      />
     </div>
 
     <script>
@@ -167,7 +170,7 @@
 
           // 添加点击事件监听器
           foodItemElement.addEventListener("click", () => {
-            location.href = `postComment.html?id=${food.id}`;
+            location.href = `foodDetail.html?id=${food.id}`;
           });
 
           foodList.appendChild(foodItemElement);

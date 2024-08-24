@@ -5,117 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Detail - HomeFoodShare</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #557D55;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            flex-direction: column;
-            padding: 20px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #557d55;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        flex-direction: column;
+        padding: 20px;
+      }
 
-        .header {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+      .header {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+      }
 
-        .header img {
-            width: 70%;
-        }
+      .header img {
+        width: 70%;
+      }
 
-        .food-detail-container {
-            max-width: 800px;
-            width: 100%;
-            background-color: #FFFFFF;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+      .food-detail-container {
+        max-width: 800px;
+        width: 100%;
+        background-color: #ffffff;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
 
-        .food-detail-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+      .food-detail-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
 
-        .food-detail-header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
+      .food-detail-header h1 {
+        margin: 0;
+        font-size: 24px;
+      }
 
-        .food-images {
-            display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
+      .food-images {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+        justify-content: center;
+      }
 
-        .food-images img {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            margin-bottom: 10px;
-            border-radius: 8px;
-        }
+      .food-images img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin-bottom: 10px;
+        border-radius: 8px;
+      }
 
-        .food-info {
-            margin-bottom: 10px;
-            color: #000;
-        }
+      .food-info {
+        margin-bottom: 10px;
+        color: #000;
+      }
 
-        .food-info label {
-            font-weight: bold;
-            margin-right: 5px;
-            color: #333;
-        }
+      .food-info label {
+        font-weight: bold;
+        margin-right: 5px;
+        color: #333;
+      }
 
-        .comments-section {
-            margin-top: 20px;
-        }
+      .comments-section {
+        margin-top: 20px;
+      }
 
-        .comments-section h2 {
-            color: #333;
-        }
+      .comments-section h2 {
+        color: #333;
+      }
 
-        .comment-form textarea {
-            width: 95%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            background-color: #d4d7a7;
-            margin-bottom: 10px;
-            font-family: Arial, sans-serif;
-        }
+      .comment-form textarea {
+        width: 95%;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background-color: #d4d7a7;
+        margin-bottom: 10px;
+        font-family: Arial, sans-serif;
+      }
 
-        .comment-form select,
-        .comment-form button {
-            width: 30%;
-            padding: 10px;
-            border-radius: 4px;
-            border: none;
-            background-color: #d4d7a7;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-family: Arial, sans-serif;
-        }
+      .comment-form select,
+      .comment-form button {
+        width: 30%;
+        padding: 10px;
+        border-radius: 4px;
+        border: none;
+        background-color: #d4d7a7;
+        margin-bottom: 10px;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+      }
 
-        .comment-form button {
-            background-color: #28a745;
-            color: #fff;
-        }
+      .comment-form button {
+        background-color: #28a745;
+        color: #fff;
+      }
 
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: #007bff;
-        }
+      .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #007bff;
+      }
 
-        .back-link:hover {
-            text-decoration: underline;
-        }
+      .back-link:hover {
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
@@ -127,7 +127,7 @@
       <div class="food-detail-header">
         <h1>Food Detail</h1>
       </div>
-      
+
       <div id="foodImages" class="food-images"></div>
 
       <div class="food-info">
@@ -149,11 +149,11 @@
         <h2>Comments</h2>
         <div class="comment-form">
           <textarea id="commentText" placeholder="Add a comment..."></textarea>
- 
+
           <select id="commentPrivacy">
             <option value="public">Public</option>
-            <option value="private">Private</option>
-          </select><br />
+            <option value="private">Private</option></select
+          ><br />
 
           <button id="addCommentBtn">Add Comment</button>
         </div>
@@ -211,7 +211,7 @@
 
           // 检查用户是否输入了评论内容
           if (commentText) {
-            // 创建一个新的评论元素
+            //Create a new comment element
             const commentElement = document.createElement("div");
             commentElement.className = "comment";
             commentElement.innerHTML = `
