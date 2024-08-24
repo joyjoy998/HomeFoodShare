@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const resetButton = document.getElementById("resetButton");
   const submitButton = document.getElementById("submitButton");
+  const homeIcon = document.getElementById("homeIcon");
 
   // Handle the reset button
   resetButton.addEventListener("click", () => {
@@ -65,4 +66,10 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Network error. Please try again.");
     }
   });
+
+  // Handle the home icon click
+  homeIcon.addEventListener("click", () => {
+    window.location.href = "./home.html";
+  });
+
 });
