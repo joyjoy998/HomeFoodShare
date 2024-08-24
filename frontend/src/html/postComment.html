@@ -130,8 +130,7 @@
     </div>
 
     <script>
-      // JavaScript code remains unchanged
-      // 假设从URL获取食物ID
+  
       const foodId = new URLSearchParams(window.location.search).get("id");
 
       const foodData = localStorage.getItem("foodData");
@@ -168,16 +167,13 @@
       document
         .getElementById("addCommentBtn")
         .addEventListener("click", function () {
-          // 获取用户输入的评论内容和隐私设置
           const commentText = document
             .getElementById("commentText")
             .value.trim();
           const commentPrivacy =
             document.getElementById("commentPrivacy").value;
 
-          // 检查用户是否输入了评论内容
-          if (commentText) {
-            // 创建一个新的评论元素
+          if (commentText) 
             const commentElement = document.createElement("div");
             commentElement.className = "comment";
             commentElement.innerHTML = `
@@ -186,10 +182,10 @@
       <p>Created on: ${new Date().toLocaleString()}</p>
     `;
 
-            // 将新的评论元素添加到评论列表中
+      
             document.getElementById("commentsList").appendChild(commentElement);
 
-            // 清空输入框
+           
             document.getElementById("commentText").value = "";
           } else {
             alert("Please enter a comment");
