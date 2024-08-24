@@ -5,165 +5,198 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Sharing Platform</title>
     <style>
-        html {
-            background-color: #557D55; 
-        }
+      html {
+        background-color: #557d55;
+      }
 
-        .header img {
-            width: 100%;
-            height: auto;
-        }
+      .header img {
+        width: 100%;
+        height: auto;
+      }
 
-        .search-bar {
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-        }
+      .search-bar {
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
 
-        .search-bar input {
-            padding: 15px;
-            width: 60%;
-            max-width: 600px;
-            font-size: 18px;
-            border-radius: 10px;
-            border: none;
-            background-color: #d8e38c;
-            outline: none;
-            padding-left: 40px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        }
+      .search-bar input {
+        padding: 15px;
+        width: 60%;
+        max-width: 600px;
+        font-size: 18px;
+        border-radius: 10px;
+        border: none;
+        background-color: #d8e38c;
+        outline: none;
+        padding-left: 40px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      }
 
-        .search-bar img {
-            width: 120px;
-            height: auto;
-            margin-left: 10px;
-        }
-        .food-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 20px;
-            align-items: center;
-        }
+      .search-bar img {
+        width: 120px;
+        height: auto;
+        margin-left: 10px;
+      }
+      .food-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        align-items: center;
+      }
 
-        .food-item {
-            display: flex;
-            align-items: center;
-            width: 80%;
-            max-width: 900px;
-            background-color: #d8e38c;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: box-shadow 0.3s ease;
-        }
+      .food-item {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        max-width: 900px;
+        background-color: #d8e38c;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: box-shadow 0.3s ease;
+      }
 
-        .food-item:hover {
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-        }
+      .food-item:hover {
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+      }
 
-        .food-item img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-right: 20px;
-        }
+      .food-item img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-right: 20px;
+      }
 
-        .food-item h3 {
-            margin: 0;
-            font-size: 24px;
-            color: #6b8245;
-        }
+      .food-item h3 {
+        margin: 0;
+        font-size: 24px;
+        color: #6b8245;
+      }
 
-        .food-item p {
-            margin: 5px 0 0 0;
-            color: #555;
-            font-size: 16px;
-        }
+      .food-item p {
+        margin: 5px 0 0 0;
+        color: #555;
+        font-size: 16px;
+      }
 
-        .buttons {
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          gap: 10px;
-        }
+      .buttons {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+      }
 
-        .buttons img {
-            width: 120px;
-            height: auto;
-            cursor: pointer;
-        }
-      
-      
-   
+      .buttons img {
+        width: 120px;
+        height: auto;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
     <div class="header">
-      <img src="../img/homepage/header.png"/>
+      <img src="../img/homepage/header.png" />
     </div>
 
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search for food..." />
-      <img src="../img/homepage/search.png" alt="Search Icon" id="searchButton">
+      <img
+        src="../img/homepage/search.png"
+        alt="Search Icon"
+        id="searchButton"
+      />
     </div>
 
-    <div id="foodList" class="food-list">
-    </div>
+    <div id="foodList" class="food-list"></div>
 
     <div class="buttons">
-      <img src="../img/homepage/upload.png" alt="Upload Button" onclick="location.href='foodUploading.html'">
-      <img src="../img/homepage/profile.png" alt="Profile Button" onclick="location.href='profile.html'">
-  </div>
+      <img
+        src="../img/homepage/upload.png"
+        alt="Upload Button"
+        onclick="location.href='foodUploading.html'"
+      />
+      <img
+        src="../img/homepage/profile.png"
+        alt="Profile Button"
+        onclick="location.href='profile.html'"
+      />
+    </div>
 
     <script>
       // Assume that the foodData is acquired from the server
-    const foodData = localStorage.getItem("foodData")
-      ? JSON.parse(localStorage.getItem("foodData"))
-      : [];
+      const foodData = localStorage.getItem("foodData")
+        ? JSON.parse(localStorage.getItem("foodData"))
+        : [];
 
-    // Display food items
-    function displayFoodItems(foodItems) {
-      const foodList = document.getElementById("foodList");
-      foodList.innerHTML = "";
+      // 显示食物项目
+      function displayFoodItems(foodItems) {
+        const foodList = document.getElementById("foodList");
+        foodList.innerHTML = "";
 
-      foodItems.forEach((food) => {
-        const foodItemElement = document.createElement("div");
-        foodItemElement.classList.add("food-item");
-        foodItemElement.innerHTML = `
-          <img src="${food.imageUrl}" alt="${food.title}">
-          <h3>${food.title}</h3>
-          <p>${food.description}</p>
-        `;
-        foodItemElement.addEventListener("click", () => {
-          location.href = `postComment.html?id=${food.id}`;
+        foodItems.forEach((food) => {
+          const foodItemElement = document.createElement("div");
+          foodItemElement.classList.add("food-item");
+
+          // 创建图片元素
+          const imgElement = document.createElement("img");
+          if (food.images && food.images.length > 0) {
+            // 使用数组中的第一张图片
+            imgElement.src = food.images[0];
+          } else {
+            // 如果没有图片，可以设置一个默认图片
+            imgElement.src = "path/to/default-image.jpg";
+          }
+          imgElement.alt = food.title;
+
+          // 创建标题元素
+          const titleElement = document.createElement("h3");
+          titleElement.textContent = food.title;
+
+          // 创建描述元素
+          const descElement = document.createElement("p");
+          descElement.textContent = food.description;
+
+          // 将所有元素添加到食物项目中
+          foodItemElement.appendChild(imgElement);
+          foodItemElement.appendChild(titleElement);
+          foodItemElement.appendChild(descElement);
+
+          // 添加点击事件监听器
+          foodItemElement.addEventListener("click", () => {
+            location.href = `postComment.html?id=${food.id}`;
+          });
+
+          foodList.appendChild(foodItemElement);
         });
+      }
 
-        foodList.appendChild(foodItemElement);
-      });
-    }
+      // Search for food
+      function searchFood() {
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const filteredFood = foodData.filter(
+          (food) =>
+            food.title.toLowerCase().includes(query) ||
+            food.description.toLowerCase().includes(query)
+        );
+        displayFoodItems(filteredFood);
+      }
 
-    // Search for food
-    function searchFood() {
-      const query = document.getElementById("searchInput").value.toLowerCase();
-      const filteredFood = foodData.filter(
-        (food) =>
-          food.title.toLowerCase().includes(query) ||
-          food.description.toLowerCase().includes(query)
-      );
-      displayFoodItems(filteredFood);
-    }
+      // Add event listener for search icon click
+      document
+        .getElementById("searchButton")
+        .addEventListener("click", searchFood);
 
-    // Add event listener for search icon click
-    document.getElementById("searchButton").addEventListener("click", searchFood);
-
-    // Display all food items
-    displayFoodItems(foodData);
+      // Display all food items
+      displayFoodItems(foodData);
     </script>
   </body>
 </html>

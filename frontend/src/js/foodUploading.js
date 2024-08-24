@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   photoInput.addEventListener("change", function (event) {
     const files = event.target.files;
     imagesArray = []; // 清空之前的图片数组
+    imagePreview.innerHTML = ""; // 清空预览区域
 
     Array.from(files).forEach((file) => {
       const reader = new FileReader();
@@ -49,10 +50,21 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     foodData.push(formData);
-    localStorage.setItem("foodData", JSON.stringify(foodData));
 
-    // 显示成功消息
-    alert("Data has been uploaded successfully!");
-    window.location.href = "./home.html";
+    // 检查 localStorage 的大小限制
+    try {
+      localStorage.setItem("foodData", JSON.stringify(foodData));
+      // 显示成功消息
+      alert("Data has been uploaded successfully!");
+      window.location.href = "./home.html";
+    } catch (e) {
+      if (e instanceof DOMException && e.name === "QuotaExceededError") {
+        alert(
+          "Storage limit exceeded. Please delete some old data or use fewer/smaller images."
+        );
+      } else {
+        alert("An error occurred while saving the data.");
+      }
+    }
   });
 });
