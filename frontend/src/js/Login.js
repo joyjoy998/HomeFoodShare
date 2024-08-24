@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
 
       // get user input
-      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
 
       // verify user input from frontend
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   'Content-Type': 'application/json'
               },
               body: JSON.stringify({
-                  username: username,
+                  email: email,
                   password: password
               })
           });
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (response.ok) {
               // login successful
               alert("Successfully log in.");
-              window.location.href = "/profile";
+              window.location.href = "/home";
           } else {
               // handle login error
               alert(result.message || "Login failed. Please make sure your have entered correct user name and password.");
