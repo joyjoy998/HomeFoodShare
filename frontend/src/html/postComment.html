@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Detail</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .food-detail-container {
+        max-width: 600px;
+        margin: auto;
+      }
+      .food-detail-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .food-detail-header h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+      .food-images {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .food-images img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+      .food-info {
+        margin-bottom: 10px;
+      }
+      .food-info label {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+      .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #007bff;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="food-detail-container">
+      <div class="food-detail-header">
+        <h1>Food Item Details</h1>
+      </div>
+      <div id="foodImages" class="food-images"></div>
+      <div class="food-info">
+        <label>Cuisine Type:</label>
+        <span id="foodTag"></span>
+      </div>
+      <div class="food-info">
+        <label>Description:</label>
+        <span id="foodDescription"></span>
+      </div>
+      <div class="food-info">
+        <label>University:</label>
+        <span id="university"></span>
+      </div>
+
+      <!-- 评论区 -->
+      <div class="comments-section">
+        <h2>Comments</h2>
+        <div class="comment-form">
+          <textarea id="commentText" placeholder="Add a comment..."></textarea>
+          <select id="commentPrivacy">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+          <button id="addCommentBtn">Add Comment</button>
+        </div>
+        <div id="commentsList"></div>
+      </div>
+
+      <a href="home.html" class="back-link">← Back to Main Page</a>
+    </div>
+
+    <script>
+      // 假设从URL获取食物ID
+      const foodId = new URLSearchParams(window.location.search).get("id");
+
+      const foodData = localStorage.getItem("foodData");
+      if (foodData) {
+        const foodItems = JSON.parse(foodData);
+        const foodItem = foodItems.find((item) => item.id == foodId);
+        if (foodItem) {
+          displayFoodDetails(foodItem);
+        } else {
+          alert("Food item not found");
+        }
+      } else {
+        alert("Food data not found");
+      }
+
+      function displayFoodDetails(foodItem) {
+        document.getElementById(
+          "foodImages"
+        ).innerHTML = `<img src="${foodItem.imageUrl}" alt="${foodItem.title}">`;
+        document.getElementById("foodTag").textContent = foodItem.tag;
+        document.getElementById("foodDescription").textContent =
+          foodItem.description;
+        document.getElementById("university").textContent = foodItem.university;
+      }
+
+      document
+        .getElementById("addCommentBtn")
+        .addEventListener("click", function () {
+          // 获取用户输入的评论内容和隐私设置
+          const commentText = document
+            .getElementById("commentText")
+            .value.trim();
+          const commentPrivacy =
+            document.getElementById("commentPrivacy").value;
+
+          // 检查用户是否输入了评论内容
+          if (commentText) {
+            // 创建一个新的评论元素
+            const commentElement = document.createElement("div");
+            commentElement.className = "comment";
+            commentElement.innerHTML = `
+      <p>${commentText}</p>
+      <p class="comment-privacy">Privacy: ${commentPrivacy}</p>
+    `;
+
+            // 将新的评论元素添加到评论列表中
+            document.getElementById("commentsList").appendChild(commentElement);
+
+            // 清空输入框
+            document.getElementById("commentText").value = "";
+          } else {
+            alert("Please enter a comment");
+          }
+        });
+    </script>
+  </body>
+</html>

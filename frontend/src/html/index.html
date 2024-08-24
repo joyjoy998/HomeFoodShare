@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Sharing Platform</title>
     <style>
         html {
@@ -70,9 +70,8 @@
         }
        
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="header">
         <div class="buttons">
             <img src="../img/homepage/login.png" alt="Login Button" onclick="location.href='login.html'">
@@ -87,7 +86,7 @@
     </div>
 
     <div id="foodList" class="food-list">
-        <!-- 动态生成的食物项 -->
+      <!-- 动态生成的食物项 -->
     </div>
 
     <div class="marketplace">
@@ -97,49 +96,80 @@
     
 
     <script>
-        // 假设我们从服务器获取了食物数据
-        const foodData = [
-            { id: 1, title: 'Sushi', description: 'Fresh sushi with salmon', imageUrl: '/uploads/sushi.jpg' },
-            { id: 2, title: 'Pizza', description: 'Italian pizza with cheese', imageUrl: '/uploads/pizza.jpg' },
-            { id: 3, title: 'Burger', description: 'American burger with beef', imageUrl: '/uploads/burger.jpg' },
-            { id: 4, title: 'Pasta', description: 'Italian pasta with tomato sauce', imageUrl: '/uploads/pasta.jpg' },
-            { id: 5, title: 'Salad', description: 'Healthy salad with vegetables', imageUrl: '/uploads/salad.jpg' }
-        ];
+      // Assume we have data accessed from backend
+      const foodData = [
+        {
+          id: 1,
+          title: "Sushi",
+          description: "Fresh sushi with salmon",
+          tag: "Japan",
+          university: "University of Sydney",
+          imageUrl: "/uploads/sushi.jpg",
+        },
+        {
+          id: 2,
+          title: "Pizza",
+          description: "Italian pizza with cheese",
+          tag: "Italy",
+          university: "University of Melbourne",
+          imageUrl: "/uploads/pizza.jpg",
+        },
+        {
+          id: 3,
+          title: "Burger",
+          description: "American burger with beef",
+          tag: "USA",
+          university: "University of New South Wales",
+          imageUrl: "/uploads/burger.jpg",
+        },
+        {
+          id: 4,
+          title: "Pasta",
+          description: "Italian pasta with tomato sauce",
+          tag: "Italy",
+          university: "University of Queensland",
+          imageUrl: "/uploads/pasta.jpg",
+        },
+      ];
 
-        // 显示所有食物
-        function displayFoodItems(foodItems) {
-            const foodList = document.getElementById('foodList');
-            foodList.innerHTML = '';
+      localStorage.setItem("foodData", JSON.stringify(foodData));
 
-            foodItems.forEach(food => {
-                const foodItemElement = document.createElement('div');
-                foodItemElement.classList.add('food-item');
-                foodItemElement.innerHTML = `
+      // 显示所有食物
+      function displayFoodItems(foodItems) {
+        const foodList = document.getElementById("foodList");
+        foodList.innerHTML = "";
+
+        foodItems.forEach((food) => {
+          const foodItemElement = document.createElement("div");
+          foodItemElement.classList.add("food-item");
+          foodItemElement.innerHTML = `
                     <img src="${food.imageUrl}" alt="${food.title}">
                     <h3>${food.title}</h3>
                     <p>${food.description}</p>
                 `;
-                foodItemElement.addEventListener('click', () => {
-                    location.href = `food-detail.html?id=${food.id}`;
-                });
+          foodItemElement.addEventListener("click", () => {
+            location.href = `food-detail.html?id=${food.id}`;
+          });
 
-                foodList.appendChild(foodItemElement);
-            });
-        }
+          foodList.appendChild(foodItemElement);
+        });
+      }
 
-        // 搜索功能
-        function searchFood() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filteredFood = foodData.filter(food => 
-                food.title.toLowerCase().includes(query) || 
-                food.description.toLowerCase().includes(query)
-            );
-            displayFoodItems(filteredFood);
-        }
+      // 搜索功能
+      function searchFood() {
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const filteredFood = foodData.filter(
+          (food) =>
+            food.title.toLowerCase().includes(query) ||
+            food.description.toLowerCase().includes(query)
+        );
+        displayFoodItems(filteredFood);
+      }
 
-        // 初始化页面显示所有食物
-        displayFoodItems(foodData);
+      // 初始化页面显示所有食物
+      displayFoodItems(foodData);
     </script>
-
-</body>
+  </body>
 </html>
