@@ -43,7 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (response.ok) {
         if (result.message === "Authentication successful") {
-          // login successful
+          // store logged in status in local storage
+          localStorage.setItem("isLoggedIn", "true");
+          localStorage.setItem("userEmail", email);
+
+          // redirect to home page
           alert("Successfully logged in.");
           window.location.href = "./home.html";
         } else {
