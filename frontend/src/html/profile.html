@@ -3,20 +3,94 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile Page</title>
+    <title>Profile - HomeFoodShare</title>
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #557D55;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            width: 70%;
+            max-width: 600px;
+        }
+
+        .container {
+            background-color: transparent;
+            width: 300px;
+            padding: 0;
+            text-align: left;
+        }
+
+        .profile-info p {
+            margin: 10px 0;
+            color: #FFFFFF;
+        }
+
+        .profile-info p strong {
+            color: #FFD700;
+        }
+
+        #foodHistoryTitle {
+            margin-top: 20px;
+            color: #FFFFFF;
+        }
+
+        #foodHistory {
+            list-style-type: none;
+            padding: 0;
+            color: #FFFFFF;
+        }
+
+        #foodHistory li {
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #d4d7a7;
+            border-radius: 4px;
+        }
+
+        .home-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+    </style>
   </head>
   <body>
-    <h1>My Profile</h1>
-    <div>
-      <p><strong>Username:</strong> <span id="username"></span></p>
-      <p><strong>Email:</strong> <span id="email"></span></p>
-      <p><strong>Phone:</strong> <span id="phone"></span></p>
+    <div class="header">
+      <img src="path_to_header/header.png" alt="Home Food Sharing" />
     </div>
 
-    <h2 id="foodHistoryTitle">My Food History</h2>
-    <ul id="foodHistory">
-      <!-- List of food items will be displayed here -->
-    </ul>
+    <div class="container">
+      <h1>My Profile</h1>
+      <div class="profile-info">
+        <p><strong>Username:</strong> <span id="username"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Phone:</strong> <span id="phone"></span></p>
+      </div>
+
+      <h2 id="foodHistoryTitle">My Food History</h2>
+      <ul id="foodHistory">
+        <!-- List of food items will be displayed here -->
+      </ul>
+    </div>
+
+    <div class="home-button">
+      <img src="path_to_buttons/home.png" alt="Home" onclick="window.location.href='/home';" />
+    </div>
 
     <script src="../js/profile.js"></script>
   </body>
