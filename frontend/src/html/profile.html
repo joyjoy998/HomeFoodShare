@@ -11,7 +11,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             margin: 0;
             flex-direction: column;
         }
@@ -24,12 +23,11 @@
 
         .header img {
             width: 70%;
-            max-width: 600px;
         }
 
         .container {
             background-color: transparent;
-            width: 300px;
+            width: 70%;
             padding: 0;
             text-align: left;
         }
@@ -37,21 +35,22 @@
         .profile-info p {
             margin: 10px 0;
             color: #FFFFFF;
+            font-size: 20px;
         }
 
         .profile-info p strong {
-            color: #FFD700;
+            color: #C8CC6A;
         }
 
-        #foodHistoryTitle {
+        .listTitle {
             margin-top: 20px;
-            color: #FFFFFF;
+            color: #C8CC6A;
         }
 
         #foodHistory {
             list-style-type: none;
             padding: 0;
-            color: #FFFFFF;
+            color: #C8CC6A;
         }
 
         #foodHistory li {
@@ -59,6 +58,7 @@
             padding: 5px;
             background-color: #d4d7a7;
             border-radius: 4px;
+            font-size: 20px;
         }
 
         .home-button {
@@ -71,25 +71,25 @@
   </head>
   <body>
     <div class="header">
-      <img src="path_to_header/header.png" alt="Home Food Sharing" />
+      <img src="../img/header.png" alt="Home Food Sharing" />
     </div>
 
     <div class="container">
-      <h1>My Profile</h1>
+      <h1 class="listTitle">My Profile</h1>
       <div class="profile-info">
         <p><strong>Username:</strong> <span id="username"></span></p>
         <p><strong>Email:</strong> <span id="email"></span></p>
         <p><strong>Phone:</strong> <span id="phone"></span></p>
       </div>
 
-      <h2 id="foodHistoryTitle">My Food History</h2>
+      <h2 class="listTitle">My Food History</h2>
       <ul id="foodHistory">
         <!-- List of food items will be displayed here -->
       </ul>
     </div>
 
     <div class="home-button">
-      <img src="path_to_buttons/home.png" alt="Home" onclick="window.location.href='/home';" />
+      <img src="../img/home.png" alt="Home" onclick="window.location.href='./home.html';" />
     </div>
 
     <script src="../js/profile.js"></script>
