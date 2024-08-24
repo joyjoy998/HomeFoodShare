@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Sharing Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+        .header .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .header .buttons button {
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .search-bar input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+        .search-bar button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .food-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .food-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            width: calc(33.333% - 20px);
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+        }
+        .food-item:hover {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .food-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .food-item h3 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+        .food-item p {
+            margin: 0;
+            color: #555;
+        }
+        .button-container {
+            margin-left: auto; /* 将按钮容器推到右侧 */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Food Sharing Platform</h1>
+    </div>
+    <div class="button-container">
+        <div class="buttons">
+            <button onclick="location.href='upload.html'">Upload</button>
+        </div>
+        <div class="buttons">
+            <button onclick="location.href='profile.html'">Profile</button>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for food...">
+        <button onclick="searchFood()">Search</button>
+    </div>
+
+    <div id="foodList" class="food-list">
+        <!-- 动态生成的食物项 -->
+    </div>
+
+    <script>
+        // 假设我们从服务器获取了食物数据
+        const foodData = [
+            { id: 1, title: 'Sushi', description: 'Fresh sushi with salmon', imageUrl: '/uploads/sushi.jpg' },
+            { id: 2, title: 'Pizza', description: 'Italian pizza with cheese', imageUrl: '/uploads/pizza.jpg' },
+            { id: 3, title: 'Burger', description: 'American burger with beef', imageUrl: '/uploads/burger.jpg' },
+            { id: 4, title: 'Pasta', description: 'Italian pasta with tomato sauce', imageUrl: '/uploads/pasta.jpg' },
+            { id: 5, title: 'Salad', description: 'Healthy salad with vegetables', imageUrl: '/uploads/salad.jpg' }
+        ];
+
+        // 显示所有食物
+        function displayFoodItems(foodItems) {
+            const foodList = document.getElementById('foodList');
+            foodList.innerHTML = '';
+
+            foodItems.forEach(food => {
+                const foodItemElement = document.createElement('div');
+                foodItemElement.classList.add('food-item');
+                foodItemElement.innerHTML = `
+                    <img src="${food.imageUrl}" alt="${food.title}">
+                    <h3>${food.title}</h3>
+                    <p>${food.description}</p>
+                `;
+                foodItemElement.addEventListener('click', () => {
+                    location.href = `food-detail.html?id=${food.id}`;
+                });
+
+                foodList.appendChild(foodItemElement);
+            });
+        }
+
+        // 搜索功能
+        function searchFood() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filteredFood = foodData.filter(food => 
+                food.title.toLowerCase().includes(query) || 
+                food.description.toLowerCase().includes(query)
+            );
+            displayFoodItems(filteredFood);
+        }
+
+        // 初始化页面显示所有食物
+        displayFoodItems(foodData);
+    </script>
+
+</body>
+</html>
