@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (response.ok) {
         // login successful
         alert("Successfully log in.");
-        // window.location.href = "/profile";
+        window.location.href = "./home.html";
       } else {
         // handle login error
         alert(
