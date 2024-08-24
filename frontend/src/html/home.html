@@ -132,7 +132,6 @@
         ? JSON.parse(localStorage.getItem("foodData"))
         : [];
 
-      // 显示食物项目
       function displayFoodItems(foodItems) {
         const foodList = document.getElementById("foodList");
         foodList.innerHTML = "";
@@ -141,31 +140,28 @@
           const foodItemElement = document.createElement("div");
           foodItemElement.classList.add("food-item");
 
-          // 创建图片元素
           const imgElement = document.createElement("img");
           if (food.imageUrl && food.imageUrl.length > 0) {
-            // 使用数组中的第一张图片
             imgElement.src = food.imageUrl[0];
           } else {
-            // 如果没有图片，可以设置一个默认图片
             imgElement.src = "../img/food/delicious.jpg";
           }
           imgElement.alt = food.title;
 
-          // 创建标题元素
+          
           const titleElement = document.createElement("h3");
           titleElement.textContent = food.title;
 
-          // 创建描述元素
+         
           const descElement = document.createElement("p");
           descElement.textContent = food.description;
 
-          // 将所有元素添加到食物项目中
+          
           foodItemElement.appendChild(imgElement);
           foodItemElement.appendChild(titleElement);
           foodItemElement.appendChild(descElement);
 
-          // 添加点击事件监听器
+          
           foodItemElement.addEventListener("click", () => {
             location.href = `postComment.html?id=${food.id}`;
           });
