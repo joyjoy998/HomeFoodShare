@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Sharing Platform</title>
+    <style>
+        html {
+            background-color: #557D55; 
+        }
+
+        .header img {
+            width: 100%;
+            height: auto;
+        }
+
+        .search-bar {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .search-bar input {
+            padding: 15px;
+            width: 60%;
+            max-width: 600px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            background-color: #d8e38c;
+            outline: none;
+            padding-left: 40px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-bar img {
+            width: 120px;
+            height: auto;
+            margin-left: 10px;
+        }
+        .food-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            align-items: center;
+        }
+
+        .food-item {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            max-width: 900px;
+            background-color: #d8e38c;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .food-item:hover {
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .food-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .food-item h3 {
+            margin: 0;
+            font-size: 24px;
+            color: #6b8245;
+        }
+
+        .food-item p {
+            margin: 5px 0 0 0;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .buttons {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 10px;
+        }
+
+        .buttons img {
+            width: 120px;
+            height: auto;
+            cursor: pointer;
+        }
+      
+      
+   
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img src="../img/homepage/header.png"/>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search for food..." />
+      <img src="../img/homepage/search.png" alt="Search Icon" id="searchButton">
+    </div>
+
+    <div id="foodList" class="food-list">
+    </div>
+
+    <div class="buttons">
+      <img src="../img/homepage/upload.png" alt="Upload Button" onclick="location.href='foodUploading.html'">
+      <img src="../img/homepage/profile.png" alt="Profile Button" onclick="location.href='profile.html'">
+  </div>
+
+    <script>
+      // Assume that the foodData is acquired from the server
+    const foodData = localStorage.getItem("foodData")
+      ? JSON.parse(localStorage.getItem("foodData"))
+      : [];
+
+    // Display food items
+    function displayFoodItems(foodItems) {
+      const foodList = document.getElementById("foodList");
+      foodList.innerHTML = "";
+
+      foodItems.forEach((food) => {
+        const foodItemElement = document.createElement("div");
+        foodItemElement.classList.add("food-item");
+        foodItemElement.innerHTML = `
+          <img src="${food.imageUrl}" alt="${food.title}">
+          <h3>${food.title}</h3>
+          <p>${food.description}</p>
+        `;
+        foodItemElement.addEventListener("click", () => {
+          location.href = `postComment.html?id=${food.id}`;
+        });
+
+        foodList.appendChild(foodItemElement);
+      });
+    }
+
+    // Search for food
+    function searchFood() {
+      const query = document.getElementById("searchInput").value.toLowerCase();
+      const filteredFood = foodData.filter(
+        (food) =>
+          food.title.toLowerCase().includes(query) ||
+          food.description.toLowerCase().includes(query)
+      );
+      displayFoodItems(filteredFood);
+    }
+
+    // Add event listener for search icon click
+    document.getElementById("searchButton").addEventListener("click", searchFood);
+
+    // Display all food items
+    displayFoodItems(foodData);
+    </script>
+  </body>
+</html>
