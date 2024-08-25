@@ -165,10 +165,6 @@
     </div>
 
     <script>
-<<<<<<< HEAD
-=======
-      
->>>>>>> 425c6c13d9ab4eb1f688a816830798378b15b0ca
       const foodId = new URLSearchParams(window.location.search).get("id");
 
       const foodData = localStorage.getItem("foodData");
@@ -187,15 +183,8 @@
       function displayFoodDetails(foodItem) {
         const imgElement = document.createElement("img");
         if (foodItem.imageUrl && foodItem.imageUrl.length > 0) {
-<<<<<<< HEAD
           imgElement.src = foodItem.imageUrl[0];
         } else {
-=======
-          
-          imgElement.src = foodItem.imageUrl[0];
-        } else {
-      
->>>>>>> 425c6c13d9ab4eb1f688a816830798378b15b0ca
           imgElement.src = "../img/food/delicious.jpg";
         }
         imgElement.alt = foodItem.title;
@@ -210,32 +199,18 @@
       document
         .getElementById("addCommentBtn")
         .addEventListener("click", function () {
-<<<<<<< HEAD
-=======
-       
->>>>>>> 425c6c13d9ab4eb1f688a816830798378b15b0ca
           const commentText = document
             .getElementById("commentText")
             .value.trim();
           const commentPrivacy =
             document.getElementById("commentPrivacy").value;
-<<<<<<< HEAD
-
           if (commentText) {
-            //Create a new comment element
-=======
-          if (commentText) {
->>>>>>> 425c6c13d9ab4eb1f688a816830798378b15b0ca
             const commentElement = document.createElement("div");
             commentElement.className = "comment";
             commentElement.innerHTML = `
               <p>${commentText}</p>
               <p class="comment-privacy">Privacy: ${commentPrivacy}</p>
             `;
-<<<<<<< HEAD
-
-=======
->>>>>>> 425c6c13d9ab4eb1f688a816830798378b15b0ca
             document.getElementById("commentsList").appendChild(commentElement);
 
             document.getElementById("commentText").value = "";

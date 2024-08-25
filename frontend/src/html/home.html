@@ -151,32 +151,16 @@
           }
           imgElement.alt = food.title;
 
-<<<<<<< HEAD
           const titleElement = document.createElement("h3");
           titleElement.textContent = food.title;
 
           const descElement = document.createElement("p");
           descElement.textContent = food.description;
 
-=======
-          
-          const titleElement = document.createElement("h3");
-          titleElement.textContent = food.title;
-
-         
-          const descElement = document.createElement("p");
-          descElement.textContent = food.description;
-
-          
->>>>>>> 425c6c13d9ab4eb1f688a816830798378b15b0ca
           foodItemElement.appendChild(imgElement);
           foodItemElement.appendChild(titleElement);
           foodItemElement.appendChild(descElement);
 
-<<<<<<< HEAD
-=======
-          
->>>>>>> 425c6c13d9ab4eb1f688a816830798378b15b0ca
           foodItemElement.addEventListener("click", () => {
             location.href = `foodDetail.html?id=${food.id}`;
           });

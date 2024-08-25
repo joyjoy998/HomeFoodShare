@@ -4,17 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const imagePreview = document.getElementById("imagePreview");
   let imagesArray = [];
 
-<<<<<<< HEAD
   photoInput.addEventListener("change", function (event) {
     const files = event.target.files;
     imagesArray = [];
-=======
-
-  photoInput.addEventListener("change", function (event) {
-    const files = event.target.files;
-    imagesArray = []; 
-    imagePreview.innerHTML = ""; 
->>>>>>> 425c6c13d9ab4eb1f688a816830798378b15b0ca
 
     Array.from(files).forEach((file) => {
       const reader = new FileReader();
@@ -27,10 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-<<<<<<< HEAD
-=======
-  
->>>>>>> 425c6c13d9ab4eb1f688a816830798378b15b0ca
   function displayImage(base64Image) {
     const img = document.createElement("img");
     img.src = base64Image;
@@ -41,10 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
     imagePreview.appendChild(img);
   }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 425c6c13d9ab4eb1f688a816830798378b15b0ca
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -62,12 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     foodData.push(formData);
-<<<<<<< HEAD
-    localStorage.setItem("foodData", JSON.stringify(foodData));
-
-    alert("Data has been uploaded successfully!");
-    window.location.href = "./home.html";
-=======
     try {
       localStorage.setItem("foodData", JSON.stringify(foodData));
 
@@ -82,6 +60,5 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("An error occurred while saving the data.");
       }
     }
->>>>>>> 425c6c13d9ab4eb1f688a816830798378b15b0ca
   });
 });
