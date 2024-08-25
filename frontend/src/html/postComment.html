@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Detail</title>
+    <style>
+      html {
+        background-color: #557d55;
+      }
+
+      .header img {
+        width: 100%;
+        height: auto;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        color: #c8cc6a;
+      }
+      .food-detail-container {
+        max-width: 600px;
+        margin: auto;
+      }
+      .food-detail-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .food-detail-header h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+      .food-images {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .food-images img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+      .food-info {
+        margin-bottom: 10px;
+      }
+      .food-info label {
+        font-weight: bold;
+        margin-right: 5px;
+      }
+      .back-link {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #c8cc6a;
+      }
+      .back-link:hover {
+        text-decoration: underline;
+      }
+      .comments-section {
+        margin-top: 20px;
+      }
+      .comment-form {
+        margin-bottom: 20px;
+      }
+      .comment-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #557d55;
+        color: #c8cc6a;
+        border: 1px solid #c8cc6a;
+      }
+      .comment-form select,
+      .comment-form button {
+        padding: 5px 10px;
+        background-color: #557d55;
+        color: #c8cc6a;
+        border: 1px solid #c8cc6a;
+      }
+      .comment {
+        border: 1px solid #000;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      .comment-privacy {
+        font-style: italic;
+        font-size: 0.9em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img src="../img/homepage/header.png" />
+    </div>
+    <div class="food-detail-container">
+      <div class="food-detail-header">
+        <h1>Food Item Details</h1>
+      </div>
+      <div id="foodImages" class="food-images"></div>
+      <div class="food-info">
+        <label>Cuisine Type:</label>
+        <span id="foodTag"></span>
+      </div>
+      <div class="food-info">
+        <label>Description:</label>
+        <span id="foodDescription"></span>
+      </div>
+      <div class="food-info">
+        <label>University:</label>
+        <span id="university"></span>
+      </div>
+
+      <div class="comments-section">
+        <h2>Comments</h2>
+        <div class="comment-form">
+          <textarea id="commentText" placeholder="Add a comment..."></textarea>
+          <select id="commentPrivacy">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+          <button id="addCommentBtn">Add Comment</button>
+        </div>
+        <div id="commentsList"></div>
+      </div>
+
+      <a href="./home.html" class="back-link">← Back to Main Page</a>
+    </div>
+
+    <script>
+
+        const foodId = new URLSearchParams(window.location.search).get("id");
+
+        const foodData = localStorage.getItem("foodData");
+        if (foodData) {
+          const foodItems = JSON.parse(foodData);
+          const foodItem = foodItems.find((item) => item.id == foodId);
+          if (foodItem) {
+            displayFoodDetails(foodItem);
+          } else {
+            alert("Food item not found");
+          }
+        } else {
+          alert("Food data not found");
+        }
+
+        function displayFoodDetails(foodItem) {
+          const imgElement = document.createElement("img");
+          if (foodItem.imageUrl && foodItem.imageUrl.length > 0) {
+            // use the first image in the array
+            imgElement.src = foodItem.imageUrl[0];
+          } else {
+            // if no image, you can set a default image
+            imgElement.src = "../img/food/delicious.jpg";
+          }
+          imgElement.alt = foodItem.title;
+
+          document.getElementById("foodImages").appendChild(imgElement);
+          document.getElementById("foodTag").textContent = foodItem.tag;
+          document.getElementById("foodDescription").textContent =
+            foodItem.description;
+          document.getElementById("university").textContent = foodItem.university;
+        }
+
+        document
+          .getElementById("addCommentBtn")
+          .addEventListener("click", function () {
+            const commentText = document
+              .getElementById("commentText")
+              .value.trim();
+            const commentPrivacy =
+              document.getElementById("commentPrivacy").value;
+
+            if (commentText)
+              const commentElement = document.createElement("div");
+              commentElement.className = "comment";
+              commentElement.innerHTML = `
+        <p>${commentText}</p>
+        <p class="comment-privacy">Privacy: ${commentPrivacy}</p>
+        <p>Created on: ${new Date().toLocaleString()}</p>
+      `;
+
+
+              document.getElementById("commentsList").appendChild(commentElement);
+
+
+              document.getElementById("commentText").value = "";
+            } else {
+              alert("Please enter a comment");
+            }
+          });
+    </script>
+  </body>
+</html>
