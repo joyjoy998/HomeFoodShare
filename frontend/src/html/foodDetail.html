@@ -165,7 +165,6 @@
     </div>
 
     <script>
-      // 假设从URL获取食物ID
       const foodId = new URLSearchParams(window.location.search).get("id");
 
       const foodData = localStorage.getItem("foodData");
@@ -184,10 +183,8 @@
       function displayFoodDetails(foodItem) {
         const imgElement = document.createElement("img");
         if (foodItem.imageUrl && foodItem.imageUrl.length > 0) {
-          // 使用数组中的第一张图片
           imgElement.src = foodItem.imageUrl[0];
         } else {
-          // 如果没有图片，可以设置一个默认图片
           imgElement.src = "../img/food/delicious.jpg";
         }
         imgElement.alt = foodItem.title;
@@ -202,14 +199,12 @@
       document
         .getElementById("addCommentBtn")
         .addEventListener("click", function () {
-          // 获取用户输入的评论内容和隐私设置
           const commentText = document
             .getElementById("commentText")
             .value.trim();
           const commentPrivacy =
             document.getElementById("commentPrivacy").value;
 
-          // 检查用户是否输入了评论内容
           if (commentText) {
             //Create a new comment element
             const commentElement = document.createElement("div");
@@ -219,10 +214,8 @@
               <p class="comment-privacy">Privacy: ${commentPrivacy}</p>
             `;
 
-            // 将新的评论元素添加到评论列表中
             document.getElementById("commentsList").appendChild(commentElement);
 
-            // 清空输入框
             document.getElementById("commentText").value = "";
           } else {
             alert("Please enter a comment");
